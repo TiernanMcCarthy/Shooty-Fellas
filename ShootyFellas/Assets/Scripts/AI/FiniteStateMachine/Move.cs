@@ -4,14 +4,35 @@ using UnityEngine;
 
 public class Move : State
 {
-
+    bool ReloadingOnce = true;
+    float ReloadingTime = 0;
     public override void Execute(StateObject s)
     {
 
         Enemy Temp = s.GetComponent<Enemy>();
-        if(Temp.Move())
+
+        
+       // Debug.Log("GAMING");
+        if(Temp.Move()==true)
         {
-            Temp.CurrentState = new Shoot();
+            if (Vector3.Distance(Temp.transform.position, Temp.Target.transform.position) < Temp.Range)
+            {
+                Temp.CurrentState = new Shoot();
+            }
+            else
+            {
+                if(Temp.Reloading)
+                {
+                    Temp.Reloading = false;
+                    ReloadingOnce = true;
+                    ReloadingTime = Time.time;
+                }
+                if (ReloadingOnce && Time.time - Temp.ReloadingTime > ReloadingTime)
+                {
+                    Temp.CurrentState = new Seek();
+                }
+            }
+
         }
 
         
