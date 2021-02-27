@@ -34,12 +34,12 @@ public class Hand : MonoBehaviour
 
         if((handPivot.transform.eulerAngles.z > 90f && handPivot.transform.eulerAngles.z <= 270f))
         {
-            Debug.Log(handPivot.transform.eulerAngles.z);
+            //Debug.Log(handPivot.transform.eulerAngles.z);
             currentGun.GetComponent<BaseGun>().gunsprite.flipY = true;
         }
         else
         {
-            Debug.Log(handPivot.transform.eulerAngles.z);
+            //Debug.Log(handPivot.transform.eulerAngles.z);
             currentGun.GetComponent<BaseGun>().gunsprite.flipY = false;
         }
         //Worldpos = new Vector3(Worldpos.x, Worldpos.y, 10);

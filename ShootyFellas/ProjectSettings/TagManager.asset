@@ -8,6 +8,8 @@ TagManager:
   - AmmoHolderMinigun
   - Enemy
   - AmmoHolderShotgun
+  - AmmoHolderFAMAS
+  - AmmoHolderM4A1
   layers:
   - Default
   - TransparentFX

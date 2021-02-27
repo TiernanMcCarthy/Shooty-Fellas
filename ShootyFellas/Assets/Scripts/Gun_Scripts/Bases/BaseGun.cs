@@ -26,6 +26,8 @@ public class BaseGun : MonoBehaviour
     public bool canFire;
 
     public GameObject bulletSpawnPoint;
+
+    public float timeBetweenShots;
     public virtual void Start()
     {
         ammoReserve = this.GetComponent<ProjectilePool>();
