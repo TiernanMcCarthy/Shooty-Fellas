@@ -20,17 +20,20 @@ public class ProjectileHitTaker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.gameObject.tag);
         if (other.gameObject.GetComponent<PistolProjectile>())
         {
             Owner.Target.Damage(Owner.Damage); //Heal  
             other.gameObject.GetComponent<BaseProjectile>().gameObject.SetActive(false);
             Destroy(Owner.gameObject);
         }
-        else if (other.gameObject == Owner.Target.gameObject)
+        else if (other.gameObject.tag == Owner.Target.tag)
         {
             Owner.Target.Damage(Owner.Damage);
             Destroy(Owner.gameObject);
-
+            //Debug.Log("NOOAOSOFAOSAFOsfoa");
+            //Owner.Target.Damage(Owner.Damage);
+           // Destroy(gameObject);
         }
     }
 }

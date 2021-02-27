@@ -10,6 +10,10 @@ public class Seek : State
     public override void Execute(StateObject s)
     {
         Enemy Temp = s.GetComponent<Enemy>();
+        if(Temp.Target==null)
+        {
+            Temp.Target = MonoBehaviour.FindObjectOfType<Character>();
+        }
         if (Vector3.Distance(Temp.transform.position ,Temp.Target.transform.position)>Temp.EngageDistance-0.5f)
         {
             Temp.MoveToLocation = Temp.Target.transform.position + (Temp.transform.position - Temp.Target.transform.position).normalized * Temp.EngageDistance;

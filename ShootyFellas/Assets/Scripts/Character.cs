@@ -76,7 +76,7 @@ public class Character : MonoBehaviour
 
     public void Damage(float Amount)
     {
-        Health += Amount;
+        Health += Amount*DamageMultiplier;
 
         if(Health>MaxHealth)
         {
