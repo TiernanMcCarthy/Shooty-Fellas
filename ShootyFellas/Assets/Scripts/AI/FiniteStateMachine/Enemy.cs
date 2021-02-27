@@ -28,6 +28,8 @@ public class Enemy : StateObject
     public Board Map;
 
     public CharacterController CC;
+
+    public AIPROJECTILE Prefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,6 @@ public class Enemy : StateObject
         {
             return true;
         }
-        Debug.Log(Vector3.Distance(MoveToLocation, transform.position));
 
         return false;
     }
@@ -56,8 +57,16 @@ public class Enemy : StateObject
     {
         if(Time.time-LastFire>=FireTime)
         {
-            Debug.Log("Bang Bang");
+            //Debug.Log("Bang Bang");
             AMMO--;
+            AIPROJECTILE temp=Instantiate(Prefab, transform.position+ (Target.transform.position - transform.position).normalized*0.5f, Quaternion.Euler(0,0,0)).GetComponent<AIPROJECTILE>();
+            temp.rig2d = temp.GetComponent<Rigidbody2D>();
+            temp.rig2d.AddForce((Target.transform.position - transform.position).normalized * Speed,ForceMode2D.Impulse);
+            temp.Player = Target;
+            temp.SpawnTime = Time.time;
+            temp.Init(Target, 0, 0);
+            //temp.rig2d.AddForce(transform.right * Prefab.Speed,ForceMode2D.Impulse);
+            
             LastFire = Time.time;
         }
     }

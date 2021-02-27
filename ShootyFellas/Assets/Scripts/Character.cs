@@ -65,10 +65,22 @@ public class Character : MonoBehaviour
 
         yield return new WaitForSeconds(2);
         IsMoving = Vector3.Distance(transform.position, Pos) > MinimumDistancePerFrame;
+
         //if ()
         //{
            // IsMoving = true;
        // }
+
+    }
+
+    public void Damage(float Amount)
+    {
+        Health += Amount;
+
+        if(Health>MaxHealth)
+        {
+            Health = MaxHealth;
+        }
 
     }
 }
