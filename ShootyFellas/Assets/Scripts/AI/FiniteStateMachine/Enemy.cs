@@ -25,11 +25,13 @@ public class Enemy : StateObject
 
     public State CurrentState;
 
-    public Board Map;
+    //public Board Map;
 
     public CharacterController CC;
 
     public AIPROJECTILE Prefab;
+
+    public float Damage = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,25 @@ public class Enemy : StateObject
             //temp.rig2d.AddForce(transform.right * Prefab.Speed,ForceMode2D.Impulse);
             
             LastFire = Time.time;
+        }
+    }
+
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+
+        Debug.Log("YO?");
+        if (other.gameObject.GetComponent<PistolProjectile>())
+        {
+            Target.Damage(Damage); //Heal  
+            other.gameObject.GetComponent<BaseProjectile>().gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else if (other.gameObject == Target.gameObject)
+        {
+            Target.Damage(Damage);
+            Destroy(gameObject);
+
         }
     }
 }

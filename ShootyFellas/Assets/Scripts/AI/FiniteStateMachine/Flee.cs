@@ -12,7 +12,8 @@ public class Flee : State
         
         while(Vector3.Distance(ugh,Temp.Target.transform.position)<9.0f)
         {
-            ugh=new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0);
+            
+            ugh=new Vector3(Random.Range(-Board.Width/2, Board.Width/2), Random.Range(-Board.Height/2, Board.Height/2), 0); //Change
         }
 
         Temp.MoveToLocation = ugh;

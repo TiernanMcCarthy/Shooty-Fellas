@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Board : MonoBehaviour
+public static class Board 
 {
-    public float Width = 20;
+    public static float Width = 20;
 
-    public float Height = 20;
+    public static float Height = 20;
 }
