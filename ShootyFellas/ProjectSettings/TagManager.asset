@@ -10,6 +10,7 @@ TagManager:
   - AmmoHolderShotgun
   - AmmoHolderFAMAS
   - AmmoHolderM4A1
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - 
   - FakeCollider
-  - 
+  - GrenadeLayer
   - 
   - 
   - 

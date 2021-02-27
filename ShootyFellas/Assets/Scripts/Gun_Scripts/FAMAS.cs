@@ -32,7 +32,7 @@ public class FAMAS : BaseGun
                 nextBullet.transform.rotation = this.transform.rotation;
                 nextBullet.SetActive(true);
                 nextBullet.GetComponent<BaseProjectile>().OnSpawn();
-                currentAmmo -= 3;
+                currentAmmo -= 3 * GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().AmmoMultiplier;
                 lastFireTime = Time.time;
             }
             currentShot++;

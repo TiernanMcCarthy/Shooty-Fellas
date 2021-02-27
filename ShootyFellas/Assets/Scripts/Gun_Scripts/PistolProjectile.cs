@@ -19,7 +19,7 @@ public class PistolProjectile : BaseProjectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Wall")
         {
             Debug.Log("lmao hi");
             this.rb.velocity = Vector2.zero;

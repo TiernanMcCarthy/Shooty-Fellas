@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class UpgradeTouchPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    BoxCollider2D coll;
+    public Base_Upgrade thisUpgrade;
     void Start()
     {
-        
+        coll = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -15,4 +16,14 @@ public class UpgradeTouchPlayer : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            thisUpgrade.OnTouchPlayer();
+        }
+    }
+
+
 }
