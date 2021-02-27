@@ -27,7 +27,7 @@ public class Pistol : BaseGun
                 nextBullet.transform.rotation = this.transform.rotation;
                 nextBullet.SetActive(true);
                 nextBullet.GetComponent<BaseProjectile>().OnSpawn();
-                currentAmmo -= 1;
+                currentAmmo -= 1 * GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().AmmoMultiplier;
                 lastFireTime = Time.time;
             }
 

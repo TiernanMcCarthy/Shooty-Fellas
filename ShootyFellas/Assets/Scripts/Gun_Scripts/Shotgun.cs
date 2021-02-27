@@ -48,7 +48,7 @@ public class Shotgun : BaseGun
             nextBullet.GetComponent<BaseProjectile>().OnSpawn();
             nextBullet2.GetComponent<BaseProjectile>().OnSpawn();
             nextBullet3.GetComponent<BaseProjectile>().OnSpawn();
-            currentAmmo -= 3;
+            currentAmmo -= 3 * GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().AmmoMultiplier;
             lastFireTime = Time.time;
 
         }
