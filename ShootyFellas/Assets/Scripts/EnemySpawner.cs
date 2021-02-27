@@ -12,6 +12,11 @@ public class EnemySpawner : MonoBehaviour
     public int NumberOfMatts = 0;
     public float PowerupSpawnInterval = 20.0f;
 
+    public GameObject pistol;
+    public GameObject shotgun;
+    public GameObject FAMAS;
+    public GameObject M4A1;
+    public GameObject minigun;
 
     [Header("SpawnLocations")]
     public List<Transform> SpawnLocations;
@@ -25,6 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("lol");
         LastSpawnTime = Time.time;
     }
     private void FixedUpdate()
@@ -58,9 +64,17 @@ public class EnemySpawner : MonoBehaviour
                     temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<ReloadShorten>();
                     break;
                 case 2:
-                    temp.gameObject.AddComponent<InvincibilityPowerup>();
-                    temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<InvincibilityPowerup>();
+                    temp.gameObject.AddComponent<GunUpgrade>();
+                    temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GunUpgrade>();
+                    temp.GetComponent<GunUpgrade>().gunList.Add(pistol);
+                    temp.GetComponent<GunUpgrade>().gunList.Add(shotgun);
+                    temp.GetComponent<GunUpgrade>().gunList.Add(FAMAS);
+                    temp.GetComponent<GunUpgrade>().gunList.Add(M4A1);
+                    temp.GetComponent<GunUpgrade>().gunList.Add(minigun);
+
                     break;
+
+               
 
                     
 

@@ -9,9 +9,11 @@ public class GunUpgrade : Base_Upgrade
 
     public List<GameObject> gunList;
     public int currentGun = 0;
-    void Start()
+    void Awake()
     {
-        
+        gunList = new List<GameObject>();
+        fireScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Auto_Fire>();
+        handScript = GameObject.FindGameObjectWithTag("Hand").GetComponent<Hand>();
     }
 
     // Update is called once per frame
