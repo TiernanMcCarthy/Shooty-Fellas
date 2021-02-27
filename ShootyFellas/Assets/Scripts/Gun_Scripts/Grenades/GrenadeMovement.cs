@@ -37,11 +37,6 @@ public class GrenadeMovement : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, radius);
-    }
+
 
 }
