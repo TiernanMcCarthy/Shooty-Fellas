@@ -30,9 +30,13 @@ public class Character : MonoBehaviour
     public bool IsMoving = false;
     float LastMoveTime;
 
+
+
     private void Start()
     {
         Player = GetComponent<CharacterController>();
+
+
     }
     // Update is called once per frame
     void Update()
@@ -48,7 +52,9 @@ public class Character : MonoBehaviour
         if(Input.GetAxisRaw("Horizontal")!=0||Input.GetAxisRaw("Vertical")!=0)
         {
             //IsMoving = true;
+            
             Player.Move(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0) * Speed*Time.deltaTime);
+
         }
         else
         {
@@ -58,6 +64,7 @@ public class Character : MonoBehaviour
         //Player.Move(new Vector3(1, 0, 0)*Time.deltaTime);
 
     }
+
 
     IEnumerator CheckDistanceTravelled()
     {

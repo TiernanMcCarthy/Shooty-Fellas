@@ -8,13 +8,15 @@ public class GrenadeMovement : MonoBehaviour
     Rigidbody2D rb;
     public float startPos;
     public float radius;
+    public GameObject explosionSprite;
+    public float launchDirection; 
 
     int layerMask = 1 << 9;
     void Start()
     {
         startPos = transform.position.y;
         rb = GetComponent<Rigidbody2D>();
-        var direction = transform.right + Vector3.up;
+        var direction = (transform.right * launchDirection + Vector3.up);
         rb.AddForce(direction * speed, ForceMode2D.Impulse);
     }
 
@@ -23,18 +25,21 @@ public class GrenadeMovement : MonoBehaviour
     {
         if(transform.position.y <= startPos)
         {
-            Explode();
+            //Explode();
         }
     }
 
     void Explode()
     {
+        explosionSprite.SetActive(true);
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        Destroy(rb);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius,layerMask,0,1);
         foreach (Collider2D hitCollider in hitColliders)
         {
             Destroy(hitCollider.gameObject);
         }
-        Destroy(this.gameObject);
+        
     }
 
 

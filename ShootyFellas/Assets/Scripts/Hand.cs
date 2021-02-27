@@ -14,6 +14,10 @@ public class Hand : MonoBehaviour
     public GameObject handPivot;
 
     public GameObject currentGun;
+    public Animator animator;
+    public SpriteRenderer sprite;
+
+    public float directionFacing; //-1 for left, 1 for right
     // Start is called before the first frame update
     void Start()
     {
@@ -36,22 +40,48 @@ public class Hand : MonoBehaviour
         {
             //Debug.Log(handPivot.transform.eulerAngles.z);
             currentGun.GetComponent<BaseGun>().gunsprite.flipY = true;
+           
         }
         else
         {
             //Debug.Log(handPivot.transform.eulerAngles.z);
             currentGun.GetComponent<BaseGun>().gunsprite.flipY = false;
+           
         }
-        //Worldpos = new Vector3(Worldpos.x, Worldpos.y, 10);
-        //Worldpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Worldpos = new Vector3(Worldpos.x, Worldpos.y, Parent.transform.position.z);
-        //Debug.Log(Worldpos);
 
+        ChangeSprite();
+ 
+    }
 
-        //transform.position = Parent.transform.position + (Worldpos - Parent.transform.position).normalized *OffsetDistance;
+    void ChangeSprite()
+    {
+        if (handPivot.transform.eulerAngles.z > 10f && handPivot.transform.eulerAngles.z <= 170f)
+        {
+            animator.SetBool("WalkingDown", false);
+        }
+        else
+        {
+            animator.SetBool("WalkingDown", true);
+        }
 
-         
-        // Debug.Log(Camera.main.ScreenToWorldPoint(Worldpos));
-        // Debug.Log(Main.ScreenToWorldPoint(Input.mousePosition));
+        if (handPivot.transform.eulerAngles.z < 90f || handPivot.transform.eulerAngles.z >= 270f)
+        {
+            sprite.flipX = true;
+            directionFacing = 1;
+        }
+        else
+        {
+            sprite.flipX = false;
+            directionFacing = -1;
+        }
+
+        //if (Input.GetAxisRaw("Horizontal") == 1)
+        //{
+        //    GetComponent<SpriteRenderer>().flipX = true;
+        //}
+        //else if (Input.GetAxisRaw("Horizontal") == -1)
+        //{
+        //    GetComponent<SpriteRenderer>().flipX = false;
+        //}
     }
 }
