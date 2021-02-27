@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     [Header("Health")]
     public float Health = 100;
     public float MaxHealth = 100;
+    public float DamageMultiplier = 1f;
 
     [Header("Movement")]
     public float Speed = 5.0f;
@@ -24,7 +25,7 @@ public class Character : MonoBehaviour
     public float ReloadMultiplierDefault = 1.0f;
     public float GunForceMultiplier = 1.0f;
     public float GunForceMultiplierDefault = 1.0f;
-
+    public float AmmoMultiplier = 1.0f;
 
     public bool IsMoving = false;
     float LastMoveTime;
