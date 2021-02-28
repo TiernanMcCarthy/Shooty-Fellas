@@ -18,6 +18,10 @@ public class EnemySpawner : MonoBehaviour
     public GameObject M4A1;
     public GameObject minigun;
 
+    public GameObject grenade1;
+    public GameObject grenade2;
+    public GameObject grenade3;
+
     [Header("SpawnLocations")]
     public List<Transform> SpawnLocations;
     public Enemy Prefab;
@@ -86,12 +90,18 @@ public class EnemySpawner : MonoBehaviour
                     temp.GetComponent<GunUpgrade>().gunList.Add(FAMAS);
                     temp.GetComponent<GunUpgrade>().gunList.Add(M4A1);
                     temp.GetComponent<GunUpgrade>().gunList.Add(minigun);
-
                     break;
 
-               
 
-                    
+                case 3:
+                    Debug.Log("Grenade upgrade");
+                    temp.gameObject.AddComponent<GrenadeUpgrade>();
+                    temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GrenadeUpgrade>();
+                    temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade1);
+                    temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade2);
+                    temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade3);
+
+                    break;
 
             }
 
