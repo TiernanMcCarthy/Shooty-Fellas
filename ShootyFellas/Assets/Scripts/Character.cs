@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     public float Speed = 5.0f;
     public float SpeedMultiplier = 1.0f;
     public float SpeedMultiplierDefault = 1.0f;
-    public float MinimumDistancePerFrame = 0.4f;
+    public float MinimumDistancePerFrame = 1.0f;
     
    
 
@@ -87,6 +87,11 @@ public class Character : MonoBehaviour
 
     public void Damage(float Amount, bool shouldReduce)
     {
+        if (Amount > 0 && !IsMoving)
+        {
+            return;
+        }
+
         if(!shouldReduce)
         {
             Health += Amount * DamageMultiplier;
