@@ -7,18 +7,17 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
+
     public TextMeshProUGUI dialogueText;
 
     private Queue<string> sentences;
-    void Start()
+    void Awake()
     {
         sentences = new Queue<string>();
     }
 
     internal void StartDialogue(Dialogue dialogue)
     {
-        nameText.text = dialogue.name;
         sentences.Clear();
 
         foreach(string sentence in dialogue.sentences)
@@ -37,7 +36,17 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         string nextSentence = sentences.Dequeue();
-        dialogueText.text = nextSentence;
+        StartCoroutine(TypeSentence(nextSentence));
+    }
+
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+        foreach(char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 
     private void EndDialogue()
