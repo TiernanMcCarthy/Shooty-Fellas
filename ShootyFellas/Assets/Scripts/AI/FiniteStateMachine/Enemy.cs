@@ -88,6 +88,7 @@ public class Enemy : StateObject
         {
             Debug.Log("NOOAOSOFAOSAFOsfoa");
             Target.Damage(Damage);
+            Target.NumberOfMattsKilled++;
             Destroy(gameObject);
 
         }

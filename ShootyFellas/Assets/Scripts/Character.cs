@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     public float AmmoMultiplier = 1.0f;
     public int currentGun = 0;
     public int currentGrenade = 0;
-
+    public int NumberOfMattsKilled = 0;
     public bool IsMoving = false;
     float LastMoveTime;
 

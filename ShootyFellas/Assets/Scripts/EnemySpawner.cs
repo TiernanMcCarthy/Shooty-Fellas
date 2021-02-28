@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn Parameters")]
@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
     public bool CanSpawnEnemies = true;
     public int NumberOfMatts = 0;
     public float PowerupSpawnInterval = 20.0f;
+
+    public Character Gamer;
 
     public GameObject pistol;
     public GameObject shotgun;
@@ -48,6 +50,17 @@ public class EnemySpawner : MonoBehaviour
 
 
     private float PreviousMattIterate = 4;
+
+    public TextMeshProUGUI Timer;
+    
+    float startTime;
+    public float TimeToPlay = 300; //5 Minutes
+
+
+    public float Score = 0;
+    public int MattsKilled = 0;
+
+    bool InPlay = true;
     void GenerateList()
     {
         /*Chances = new List<char>();
@@ -92,13 +105,26 @@ public class EnemySpawner : MonoBehaviour
 
 
     }
+
+    private void Update()
+    {
+        float timey = Mathf.RoundToInt((Time.time - startTime) - TimeToPlay) * -1;
+        Timer.text = "Time Remaining: " + timey ;
+        if(timey<=0)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            Score = Gamer.Health;
+            InPlay = false;
+            UnityEngine.SceneManagement.SceneManager.LoadScene(3); //EndScreen;
+        }    
+    }
     private void Start()
     {
         Debug.Log("lol");
         LastSpawnTime = Time.time;
-
+        startTime = Time.time;
         GenerateList();
-
+        Gamer = FindObjectOfType<Character>();
   
 
 
@@ -108,82 +134,85 @@ public class EnemySpawner : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        NumberOfMatts = FindObjectsOfType<Enemy>().Length;
-        if(NumberOfMatts<MaxMatt && Time.time-LastSpawnTime>SpawnInterval)
+        if (InPlay)
         {
-            LastSpawnTime = Time.time;
-            GameObject temp=Instantiate(Prefab).gameObject;
-
-            temp.transform.position = SpawnLocations[Random.Range(0, 10)].position;
-        }
-        float NumberOfPowerups = FindObjectsOfType<Powerup>().Length ;
-        if(Time.time-LastPowerUpSpawn>PowerupSpawnInterval && NumberOfPowerups<1)
-        {
-            List<Vector3> Areas = new List<Vector3>();
-            Areas.Add(new Vector3(-Board.Width / 2, Board.Height / 2, 0)); //Top Left
-            Areas.Add(new Vector3(-Board.Width / 2, -Board.Height / 2, 0)); //Bottom Left
-            Areas.Add(new Vector3(Board.Width / 2, Board.Height / 2, 0)); //Top Right
-            Areas.Add(new Vector3(Board.Width / 2, -Board.Height / 2, 0)); //Bottom Righjt
-            Powerup temp=Instantiate(Powerupprefab);
-            char random = Chances[Random.Range(0, Chances.Count)];
-            switch(random)
+            NumberOfMatts = FindObjectsOfType<Enemy>().Length;
+            if (NumberOfMatts < MaxMatt && Time.time - LastSpawnTime > SpawnInterval)
             {
-                case 'I': //Invincibility
-                    Debug.Log("invicible");
-                    temp.gameObject.AddComponent<InvincibilityPowerup>();
-                    temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<InvincibilityPowerup>();
-                    //ModifyVariables(ref WeaponChance, ref GrenadeUpgrade, ref ReloadUpgrade,0);
-                    break;
-                case 'R':
-                    Debug.Log("Reload");
-                    temp.gameObject.AddComponent<ReloadShorten>();
-                    temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<ReloadShorten>();
+                LastSpawnTime = Time.time;
+                GameObject temp = Instantiate(Prefab).gameObject;
 
-                    //ModifyVariables(ref WeaponChance, ref InvincibilityChance, ref GrenadeUpgrade, ReloadUpgrade * 0.33f);
-                    //ReloadUpgrade = ReloadUpgrade * 0.77f;
-                    //ReloadUpgrade -= 1;
-                    GenerateList();
-                    break;
-                case 'W':
-                    Debug.Log("gun upgrade");
-                    temp.gameObject.AddComponent<GunUpgrade>();
-                    temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GunUpgrade>();
-                    temp.GetComponent<GunUpgrade>().gunList.Add(pistol);
-                    temp.GetComponent<GunUpgrade>().gunList.Add(shotgun);
-                    temp.GetComponent<GunUpgrade>().gunList.Add(FAMAS);
-                    temp.GetComponent<GunUpgrade>().gunList.Add(M4A1);
-                    temp.GetComponent<GunUpgrade>().gunList.Add(minigun);
-                   // WeaponChance -=1;
-                    GenerateList();
-                    //ModifyVariables(ref InvincibilityChance, ref GrenadeUpgrade, ref ReloadUpgrade, WeaponChance - 0.05f);
-                    //WeaponChance -= 0.05f;
-                    break;
+                temp.transform.position = SpawnLocations[Random.Range(0, 10)].position;
+            }
+            float NumberOfPowerups = FindObjectsOfType<Powerup>().Length;
+            if (Time.time - LastPowerUpSpawn > PowerupSpawnInterval && NumberOfPowerups < 1)
+            {
+                List<Vector3> Areas = new List<Vector3>();
+                Areas.Add(new Vector3(-Board.Width / 2, Board.Height / 2, 0)); //Top Left
+                Areas.Add(new Vector3(-Board.Width / 2, -Board.Height / 2, 0)); //Bottom Left
+                Areas.Add(new Vector3(Board.Width / 2, Board.Height / 2, 0)); //Top Right
+                Areas.Add(new Vector3(Board.Width / 2, -Board.Height / 2, 0)); //Bottom Righjt
+                Powerup temp = Instantiate(Powerupprefab);
+                char random = Chances[Random.Range(0, Chances.Count)];
+                switch (random)
+                {
+                    case 'I': //Invincibility
+                        Debug.Log("invicible");
+                        temp.gameObject.AddComponent<InvincibilityPowerup>();
+                        temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<InvincibilityPowerup>();
+                        //ModifyVariables(ref WeaponChance, ref GrenadeUpgrade, ref ReloadUpgrade,0);
+                        break;
+                    case 'R':
+                        Debug.Log("Reload");
+                        temp.gameObject.AddComponent<ReloadShorten>();
+                        temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<ReloadShorten>();
+
+                        //ModifyVariables(ref WeaponChance, ref InvincibilityChance, ref GrenadeUpgrade, ReloadUpgrade * 0.33f);
+                        //ReloadUpgrade = ReloadUpgrade * 0.77f;
+                        //ReloadUpgrade -= 1;
+                        GenerateList();
+                        break;
+                    case 'W':
+                        Debug.Log("gun upgrade");
+                        temp.gameObject.AddComponent<GunUpgrade>();
+                        temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GunUpgrade>();
+                        temp.GetComponent<GunUpgrade>().gunList.Add(pistol);
+                        temp.GetComponent<GunUpgrade>().gunList.Add(shotgun);
+                        temp.GetComponent<GunUpgrade>().gunList.Add(FAMAS);
+                        temp.GetComponent<GunUpgrade>().gunList.Add(M4A1);
+                        temp.GetComponent<GunUpgrade>().gunList.Add(minigun);
+                        // WeaponChance -=1;
+                        GenerateList();
+                        //ModifyVariables(ref InvincibilityChance, ref GrenadeUpgrade, ref ReloadUpgrade, WeaponChance - 0.05f);
+                        //WeaponChance -= 0.05f;
+                        break;
 
 
-                case 'G':
-                    Debug.Log("Grenade upgrade");
-                    temp.gameObject.AddComponent<GrenadeUpgrade>();
-                    temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GrenadeUpgrade>();
-                    temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade1);
-                    temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade2);
-                    temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade3);
+                    case 'G':
+                        Debug.Log("Grenade upgrade");
+                        temp.gameObject.AddComponent<GrenadeUpgrade>();
+                        temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GrenadeUpgrade>();
+                        temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade1);
+                        temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade2);
+                        temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade3);
 
-                    //GrenadeUpgrade -= 1;
-                    GenerateList();
-                    break;
+                        //GrenadeUpgrade -= 1;
+                        GenerateList();
+                        break;
 
+                }
+
+
+                temp.transform.position = Areas[Random.Range(0, 4)];
+                temp.Target = FindObjectOfType<Character>();
+                LastPowerUpSpawn = Time.time;
             }
 
-
-            temp.transform.position = Areas[Random.Range(0, 4)];
-            temp.Target = FindObjectOfType<Character>();
-            LastPowerUpSpawn = Time.time;
-        }
-
-        if(Time.time-PreviousMattIterate>MattSpawnIncrease)
-        {
-            MaxMatt++;
-            PreviousMattIterate = Time.time;
+            if (Time.time - PreviousMattIterate > MattSpawnIncrease)
+            {
+                MaxMatt++;
+                PreviousMattIterate = Time.time;
+            }
         }
     }
 
