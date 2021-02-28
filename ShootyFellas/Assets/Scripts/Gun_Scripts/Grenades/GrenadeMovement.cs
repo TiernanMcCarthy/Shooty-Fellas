@@ -23,9 +23,9 @@ public class GrenadeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y <= startPos)
+        if(transform.position.y <= startPos-1)
         {
-            //Explode();
+            Explode();
         }
     }
 
@@ -37,11 +37,15 @@ public class GrenadeMovement : MonoBehaviour
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius,layerMask,0,1);
         foreach (Collider2D hitCollider in hitColliders)
         {
-            Destroy(hitCollider.gameObject);
+            Destroy(hitCollider.transform.parent.gameObject);
         }
         
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, radius);
+    }
 
 
 }
