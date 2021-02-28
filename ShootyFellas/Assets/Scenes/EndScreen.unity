@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 203295517}
   - component: {fileID: 203295516}
   - component: {fileID: 203295520}
-  - component: {fileID: 203295521}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -242,48 +241,6 @@ MonoBehaviour:
   MattsMurdered: {fileID: 357695040}
   Profit: {fileID: 436109202}
   ME: {fileID: 0}
---- !u!114 &203295521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203295515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0be7a6a3d0556eb4f8b7a740a9c39d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxMatt: 10
-  MaxPowerup: 1
-  SpawnInterval: 5
-  MattSpawnIncrease: 4
-  CanSpawnEnemies: 1
-  NumberOfMatts: 0
-  PowerupSpawnInterval: 20
-  Gamer: {fileID: 0}
-  pistol: {fileID: 0}
-  shotgun: {fileID: 0}
-  FAMAS: {fileID: 0}
-  M4A1: {fileID: 0}
-  minigun: {fileID: 0}
-  grenade1: {fileID: 0}
-  grenade2: {fileID: 0}
-  grenade3: {fileID: 0}
-  SpawnLocations: []
-  Prefab: {fileID: 0}
-  Powerupprefab: {fileID: 0}
-  LastPowerUpSpawn: 0
-  WeaponChance: 4
-  InvincibilityChance: 1
-  GrenadeUpgrade: 2
-  ReloadUpgrade: 3
-  Total: 1
-  Chances: 
-  Timer: {fileID: 0}
-  TimeToPlay: 300
-  Score: -50
-  MattsKilled: 53
 --- !u!1 &357695038
 GameObject:
   m_ObjectHideFlags: 0
