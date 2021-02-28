@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public int MaxMatt = 10;
     public int MaxPowerup = 1;
     public float SpawnInterval = 5.0f;
+    public float MattSpawnIncrease = 4.0f;
     public bool CanSpawnEnemies = true;
     public int NumberOfMatts = 0;
     public float PowerupSpawnInterval = 20.0f;
@@ -45,6 +46,8 @@ public class EnemySpawner : MonoBehaviour
 
     public List<char> Chances;
 
+
+    private float PreviousMattIterate = 4;
     void GenerateList()
     {
         /*Chances = new List<char>();
@@ -175,6 +178,12 @@ public class EnemySpawner : MonoBehaviour
             temp.transform.position = Areas[Random.Range(0, 4)];
             temp.Target = FindObjectOfType<Character>();
             LastPowerUpSpawn = Time.time;
+        }
+
+        if(Time.time-PreviousMattIterate>MattSpawnIncrease)
+        {
+            MaxMatt++;
+            PreviousMattIterate = Time.time;
         }
     }
 

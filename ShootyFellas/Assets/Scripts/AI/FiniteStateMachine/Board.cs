@@ -6,5 +6,5 @@ public static class Board
 {
     public static float Width = 47;
 
-    public static float Height = 50;
+    public static float Height = 48;
 }
