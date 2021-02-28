@@ -8,7 +8,6 @@ public class GunUpgrade : Base_Upgrade
     public Hand handScript;
 
     public List<GameObject> gunList;
-    public int currentGun = 0;
     void Awake()
     {
         gunList = new List<GameObject>();
@@ -31,13 +30,15 @@ public class GunUpgrade : Base_Upgrade
     }
     public void UpgradeGun()
     {
-        if(currentGun != 4)
+        int temp = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().currentGun;
+        if (temp != 4)
         {
-            gunList[currentGun].SetActive(false);
-            currentGun++;
-            gunList[currentGun].SetActive(true);
-            fireScript.currentGun = gunList[currentGun];
-            handScript.currentGun = gunList[currentGun];
+            gunList[temp].SetActive(false);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().currentGun++;
+            temp = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().currentGun;
+            gunList[temp].SetActive(true);
+            fireScript.currentGun = gunList[temp];
+            handScript.currentGun = gunList[temp];
         }
 
     }

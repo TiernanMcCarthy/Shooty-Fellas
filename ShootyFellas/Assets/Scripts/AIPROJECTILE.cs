@@ -50,7 +50,7 @@ public class AIPROJECTILE : MonoBehaviour
     {
         if(collision.gameObject.layer==8)
         {
-            Spawner.LastPowerUpSpawn = Time.time;
+            //Spawner.LastPowerUpSpawn = Time.time;
             Player.Damage(Damage);
             Destroy(gameObject);
         }

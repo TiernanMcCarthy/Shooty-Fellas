@@ -56,14 +56,17 @@ public class EnemySpawner : MonoBehaviour
             switch(random)
             {
                 case 0: //Invincibility
+                    Debug.Log("invicible");
                     temp.gameObject.AddComponent<InvincibilityPowerup>();
                     temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<InvincibilityPowerup>();
                     break;
                 case 1:
+                    Debug.Log("Reload");
                     temp.gameObject.AddComponent<ReloadShorten>();
                     temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<ReloadShorten>();
                     break;
                 case 2:
+                    Debug.Log("gun upgrade");
                     temp.gameObject.AddComponent<GunUpgrade>();
                     temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GunUpgrade>();
                     temp.GetComponent<GunUpgrade>().gunList.Add(pistol);

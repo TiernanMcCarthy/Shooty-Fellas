@@ -26,6 +26,7 @@ public class Character : MonoBehaviour
     public float GunForceMultiplier = 1.0f;
     public float GunForceMultiplierDefault = 1.0f;
     public float AmmoMultiplier = 1.0f;
+    public int currentGun = 0;
 
     public bool IsMoving = false;
     float LastMoveTime;
