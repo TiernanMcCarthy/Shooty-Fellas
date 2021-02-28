@@ -26,6 +26,7 @@ public class GunUpgrade : Base_Upgrade
 
     public override void OnTouchPlayer()
     {
+        Spawner.WeaponChance -= 1;
         UpgradeGun();
     }
     public void UpgradeGun()

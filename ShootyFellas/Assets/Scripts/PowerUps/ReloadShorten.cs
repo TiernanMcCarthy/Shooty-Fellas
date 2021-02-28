@@ -23,6 +23,7 @@ public class ReloadShorten : Base_Upgrade
 
     public override void OnTouchPlayer()
     {
+        Spawner.ReloadUpgrade -= 1;
         player.ReloadMultiplier = player.ReloadMultiplier / 2;
     }
 }
