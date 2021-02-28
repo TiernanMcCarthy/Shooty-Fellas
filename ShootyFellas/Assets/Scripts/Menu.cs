@@ -12,13 +12,13 @@ public class Menu : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Play");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1); //Main Game
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2); //Main Game
     }
 
     public void Tutorial()
     {
         Debug.Log("Tutorial");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2); //Main Game
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1); //Tutorial Game
     }
 
     public void Quit()

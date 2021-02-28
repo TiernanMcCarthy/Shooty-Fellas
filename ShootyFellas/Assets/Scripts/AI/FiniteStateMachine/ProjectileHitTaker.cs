@@ -25,7 +25,9 @@ public class ProjectileHitTaker : MonoBehaviour
         {
             Owner.Target.Damage(Owner.Damage,true); //Heal  
             Owner.Target.NumberOfMattsKilled++;
+
             other.gameObject.GetComponent<BaseProjectile>().gameObject.SetActive(false);
+
             Destroy(Owner.gameObject);
         }
         else if (other.gameObject.tag == Owner.Target.tag)
