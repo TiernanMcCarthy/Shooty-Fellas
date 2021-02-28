@@ -29,10 +29,10 @@ public class PistolProjectile : BaseProjectile
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("I HIT A FUCKING WALL");
+        //Debug.Log("I HIT A FUCKING WALL");
         if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Wall")
         {
-            Debug.Log("lmao hi");
+            //Debug.Log("lmao hi");
             if (collision.gameObject.tag == "Enemy")
             {
                 this.rb.velocity = Vector2.zero;
@@ -76,7 +76,7 @@ public class PistolProjectile : BaseProjectile
     {
         base.OnSpawn();
         SpawnTime = Time.time;
-        Debug.Log("bullet start haha");
+        //Debug.Log("bullet start haha");
         Bounces = 1;
         this.rb.AddForce(transform.right * speed, ForceMode2D.Impulse);
     }

@@ -48,7 +48,6 @@ public class GrenadeMovement : MonoBehaviour
         {
             for(int i = 0; i < 5; i++)
             {
-                Debug.Log("Cluster spawning sir!!!!");
                 Instantiate(cluster, transform.position, transform.rotation);
             }
         }

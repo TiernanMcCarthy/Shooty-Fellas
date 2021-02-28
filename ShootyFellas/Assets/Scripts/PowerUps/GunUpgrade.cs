@@ -8,11 +8,13 @@ public class GunUpgrade : Base_Upgrade
     public Hand handScript;
 
     public List<GameObject> gunList;
+    Gun_UI uiComponent;
     void Awake()
     {
         gunList = new List<GameObject>();
         fireScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Auto_Fire>();
         handScript = GameObject.FindGameObjectWithTag("Hand").GetComponent<Hand>();
+        uiComponent = FindObjectOfType<Gun_UI>();
     }
 
     // Update is called once per frame
@@ -38,6 +40,8 @@ public class GunUpgrade : Base_Upgrade
             GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().currentGun++;
             temp = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().currentGun;
             gunList[temp].SetActive(true);
+            uiComponent.currentGun = gunList[temp].GetComponent<BaseGun>();
+            uiComponent.NextSprite();
             fireScript.currentGun = gunList[temp];
             handScript.currentGun = gunList[temp];
         }

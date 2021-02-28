@@ -31,7 +31,7 @@ public class GrenadeUpgrade : Base_Upgrade
     public void UpgradeGrenade()
     {
         int temp = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().currentGrenade;
-        if (temp != 2)
+        if (temp != 3)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Character>().currentGrenade++;
             spawnScript.defaultGrenade = grenadeList[temp];
