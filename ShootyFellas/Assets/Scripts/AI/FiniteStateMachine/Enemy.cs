@@ -87,7 +87,7 @@ public class Enemy : StateObject
         else if (other.gameObject.tag== "Player")
         {
             Debug.Log("NOOAOSOFAOSAFOsfoa");
-            Target.Damage(Damage);
+            Target.Damage(Damage,true);
             Target.NumberOfMattsKilled++;
             Destroy(gameObject);
 
