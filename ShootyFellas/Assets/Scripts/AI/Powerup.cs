@@ -16,11 +16,16 @@ public class Powerup : MonoBehaviour
     public float Speed;
 
     public float MaxSpeed;
+
+    public int Health = 3;
+
+    public EnemySpawner Spawner;
     // Start is called before the first frame update
     void Start()
     {
         rig2d = GetComponent<Rigidbody2D>();
         Target = FindObjectOfType<Character>();
+        Spawner = FindObjectOfType<EnemySpawner>();
     }
 
     // Update is called once per frame
@@ -41,6 +46,18 @@ public class Powerup : MonoBehaviour
         if(collision.gameObject.tag=="Player")
         {
             Destroy(gameObject);
+        }
+        if(collision.gameObject.GetComponent<BaseProjectile>())
+        {
+            if (Health == 0)
+            {
+                Spawner.LastPowerUpSpawn = Time.time;
+                Destroy(gameObject);
+            }
+
+            Health--;
+
+
         }
     }
 }

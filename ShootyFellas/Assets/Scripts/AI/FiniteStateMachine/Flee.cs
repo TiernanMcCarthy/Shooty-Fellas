@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Flee : State
 {
-
+    private float FleeDistance=15.0f;
     public override void Execute(StateObject s)
     {
         Enemy Temp = s.GetComponent<Enemy>();
         Vector3 ugh = Temp.transform.position;
         
-        while(Vector3.Distance(ugh,Temp.Target.transform.position)<9.0f)
+        while(Vector3.Distance(ugh,Temp.Target.transform.position)<15.0f)
         {
             
             ugh=new Vector3(Random.Range(-Board.Width/2, Board.Width/2), Random.Range(-Board.Height/2, Board.Height/2), 0); //Change
