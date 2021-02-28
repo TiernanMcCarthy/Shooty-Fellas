@@ -58,7 +58,7 @@ MonoBehaviour:
   MoveToLocation: {x: 0, y: 0, z: 0}
   CC: {fileID: 7719466984391250280}
   Prefab: {fileID: 3648487023363636712, guid: 0aba27453baf2ad46a91770f036ff201, type: 3}
-  Damage: 5
+  Damage: -50
 --- !u!143 &7719466984391250280
 CharacterController:
   m_ObjectHideFlags: 0

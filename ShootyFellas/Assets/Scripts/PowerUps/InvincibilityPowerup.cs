@@ -15,21 +15,19 @@ public class InvincibilityPowerup : Base_Upgrade
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            OnTouchPlayer();
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    OnTouchPlayer();
+        //}
     }
 
     public override void OnTouchPlayer()
     {
-        player.DamageMultiplier = 0;
-        StartCoroutine(ResetInvincibility());
+        //Debug.Log("YOU ARE INVINCIBLE NOW!!!!!!");
+        player.StartInvincibility();
+        //StopCoroutine(player.ResetInvincibility());
+        
     }
 
-    IEnumerator ResetInvincibility()
-    {
-        yield return new WaitForSeconds(10);
-        player.DamageMultiplier = 1f;
-    }
+
 }
