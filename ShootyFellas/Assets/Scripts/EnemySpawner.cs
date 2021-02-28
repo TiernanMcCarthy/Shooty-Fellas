@@ -33,16 +33,73 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
 
     [Header("Power Up Chances")]
-    public float WeaponChance = 0.5f;
-    public float InvincibilityChance = 0.1f;
-    public float GrenadeUpgrade = 0.1f;
-    public float ReloadUpgrade = 0.3f;
+    public int WeaponChance = 4;
+    char Weap = 'W';
+    public int InvincibilityChance = 1;
+    char Inv = 'I';
+    public int GrenadeUpgrade = 2;
+    char Gre = 'G';
+    public int ReloadUpgrade = 3;
+    char Rel = 'R';
     public float Total = 1;
 
+    public List<char> Chances;
+
+    void GenerateList()
+    {
+        /*Chances = new List<char>();
+        for (int i = 0; i < Mathf.FloorToInt(10 * WeaponChance); i++)
+        {
+            Chances.Add(Weap);
+        }
+
+        for (int i = 0; i < Mathf.FloorToInt(10 * InvincibilityChance); i++)
+        {
+            Chances.Add(Inv);
+        }
+
+        for (int i = 0; i < Mathf.FloorToInt(10 * GrenadeUpgrade); i++)
+        {
+            Chances.Add(Gre);
+        }
+
+        for (int i = 0; i <= Mathf.FloorToInt(10 * ReloadUpgrade); i++)
+        {
+            Chances.Add(Rel);
+        }*/
+
+        Chances = new List<char>();
+
+        for (int i = 0; i < WeaponChance; i++)
+        {
+            Chances.Add(Weap);
+        }
+        for (int i = 0; i < InvincibilityChance; i++)
+        {
+            Chances.Add(Inv);
+        }
+        for (int i = 0; i < GrenadeUpgrade; i++)
+        {
+            Chances.Add(Gre);
+        }
+        for (int i = 0; i < ReloadUpgrade; i++)
+        {
+            Chances.Add(Rel);
+        }
+
+
+    }
     private void Start()
     {
         Debug.Log("lol");
         LastSpawnTime = Time.time;
+
+        GenerateList();
+
+  
+
+
+
         //InvincibilityChance = 0;
         //ModifyVariables(ref WeaponChance, ref GrenadeUpgrade, ref ReloadUpgrade, 0.1f);
     }
@@ -65,23 +122,26 @@ public class EnemySpawner : MonoBehaviour
             Areas.Add(new Vector3(Board.Width / 2, Board.Height / 2, 0)); //Top Right
             Areas.Add(new Vector3(Board.Width / 2, -Board.Height / 2, 0)); //Bottom Righjt
             Powerup temp=Instantiate(Powerupprefab);
-            int random = Random.Range(0, 3);
+            char random = Chances[Random.Range(0, Chances.Count)];
             switch(random)
             {
-                case 0: //Invincibility
+                case 'I': //Invincibility
                     Debug.Log("invicible");
                     temp.gameObject.AddComponent<InvincibilityPowerup>();
                     temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<InvincibilityPowerup>();
                     //ModifyVariables(ref WeaponChance, ref GrenadeUpgrade, ref ReloadUpgrade,0);
                     break;
-                case 1:
+                case 'R':
                     Debug.Log("Reload");
                     temp.gameObject.AddComponent<ReloadShorten>();
                     temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<ReloadShorten>();
-                    ModifyVariables(ref WeaponChance, ref InvincibilityChance, ref GrenadeUpgrade, ReloadUpgrade * 0.33f);
-                    ReloadUpgrade = ReloadUpgrade * 0.77f;
+
+                    //ModifyVariables(ref WeaponChance, ref InvincibilityChance, ref GrenadeUpgrade, ReloadUpgrade * 0.33f);
+                    //ReloadUpgrade = ReloadUpgrade * 0.77f;
+                    //ReloadUpgrade -= 1;
+                    GenerateList();
                     break;
-                case 2:
+                case 'W':
                     Debug.Log("gun upgrade");
                     temp.gameObject.AddComponent<GunUpgrade>();
                     temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GunUpgrade>();
@@ -90,10 +150,14 @@ public class EnemySpawner : MonoBehaviour
                     temp.GetComponent<GunUpgrade>().gunList.Add(FAMAS);
                     temp.GetComponent<GunUpgrade>().gunList.Add(M4A1);
                     temp.GetComponent<GunUpgrade>().gunList.Add(minigun);
+                   // WeaponChance -=1;
+                    GenerateList();
+                    //ModifyVariables(ref InvincibilityChance, ref GrenadeUpgrade, ref ReloadUpgrade, WeaponChance - 0.05f);
+                    //WeaponChance -= 0.05f;
                     break;
 
 
-                case 3:
+                case 'G':
                     Debug.Log("Grenade upgrade");
                     temp.gameObject.AddComponent<GrenadeUpgrade>();
                     temp.GetComponent<UpgradeTouchPlayer>().thisUpgrade = temp.GetComponent<GrenadeUpgrade>();
@@ -101,6 +165,8 @@ public class EnemySpawner : MonoBehaviour
                     temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade2);
                     temp.GetComponent<GrenadeUpgrade>().grenadeList.Add(grenade3);
 
+                    //GrenadeUpgrade -= 1;
+                    GenerateList();
                     break;
 
             }
@@ -117,6 +183,7 @@ public class EnemySpawner : MonoBehaviour
         Var1 += Distribute / 3;
         Var2 += Distribute / 3;
         Var3 += Distribute / 3;
+        GenerateList();
         //Vector4 temp =new Vector4(WeaponChance, InvincibilityChance, GrenadeUpgrade, ReloadUpgrade);
         //WeaponChance = temp[0];
        // InvincibilityChance = temp[1];

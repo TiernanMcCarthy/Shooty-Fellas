@@ -25,6 +25,7 @@ public class GrenadeUpgrade : Base_Upgrade
 
     public override void OnTouchPlayer()
     {
+        Spawner.ReloadUpgrade -= 1;
         UpgradeGrenade();
     }
     public void UpgradeGrenade()
