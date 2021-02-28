@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     
     [Header("Health")]
     public float Health = 100;
-    public float MaxHealth = 100;
+    //public float MaxHealth = 100;
     public float DamageMultiplier = 1f;
 
     [Header("Movement")]
@@ -85,14 +85,36 @@ public class Character : MonoBehaviour
 
     }
 
-    public void Damage(float Amount)
+    public void Damage(float Amount, bool shouldReduce)
     {
-        Health += Amount*DamageMultiplier;
-
-        if(Health>MaxHealth)
+        if(!shouldReduce)
         {
-            Health = MaxHealth;
+            Health += Amount * DamageMultiplier;
         }
+        else
+        {
+            Health += Amount;
+        }
+       
 
+        //if(Health>MaxHealth)
+        //{
+        //    Health = MaxHealth;
+        //}
+
+    }
+
+    public void StartInvincibility()
+    {
+        DamageMultiplier = 0f;
+        StopCoroutine(ResetInvincibility());
+        StartCoroutine(ResetInvincibility());
+    }
+    public IEnumerator ResetInvincibility()
+    {
+        Debug.Log("TURNED IT ON LMAO");
+        yield return new WaitForSeconds(5);
+        Debug.Log("TURNED IT OFF LMAO");
+        DamageMultiplier = 1f;
     }
 }

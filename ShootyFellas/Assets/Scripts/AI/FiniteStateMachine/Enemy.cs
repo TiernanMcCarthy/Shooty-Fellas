@@ -80,14 +80,14 @@ public class Enemy : StateObject
         Debug.Log("YO?");
         if (other.gameObject.GetComponent<BaseProjectile>())
         {
-            Target.Damage(Damage); //Heal  
+            Target.Damage(Damage,false); //Heal  
             other.gameObject.GetComponent<BaseProjectile>().gameObject.SetActive(false);
             Destroy(gameObject);
         }
         else if (other.gameObject.tag== "Player")
         {
             Debug.Log("NOOAOSOFAOSAFOsfoa");
-            Target.Damage(Damage);
+            Target.Damage(Damage,false);
             Destroy(gameObject);
 
         }

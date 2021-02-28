@@ -15,15 +15,20 @@ public class ReloadShorten : Base_Upgrade
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            OnTouchPlayer();
-        }
+        //if(Input.GetKeyDown(KeyCode.R))
+        //{
+        //    OnTouchPlayer();
+        //}
     }
 
     public override void OnTouchPlayer()
     {
+        Spawner = FindObjectOfType<EnemySpawner>();
         Spawner.ReloadUpgrade -= 1;
         player.ReloadMultiplier = player.ReloadMultiplier / 2;
+        if(player.ReloadMultiplier < 0.2)
+        {
+            player.ReloadMultiplier = 0;
+        }
     }
 }

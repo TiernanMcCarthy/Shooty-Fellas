@@ -23,13 +23,13 @@ public class ProjectileHitTaker : MonoBehaviour
         Debug.Log(other.gameObject.tag);
         if (other.gameObject.GetComponent<PistolProjectile>())
         {
-            Owner.Target.Damage(Owner.Damage); //Heal  
+            Owner.Target.Damage(Owner.Damage,true); //Heal  
             other.gameObject.GetComponent<BaseProjectile>().gameObject.SetActive(false);
             Destroy(Owner.gameObject);
         }
         else if (other.gameObject.tag == Owner.Target.tag)
         {
-            Owner.Target.Damage(Owner.Damage);
+            Owner.Target.Damage(Owner.Damage,true);
             Destroy(Owner.gameObject);
             //Debug.Log("NOOAOSOFAOSAFOsfoa");
             //Owner.Target.Damage(Owner.Damage);
