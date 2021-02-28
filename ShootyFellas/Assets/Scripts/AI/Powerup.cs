@@ -40,14 +40,10 @@ public class Powerup : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+
+    public void OnCollisionEnter2D(Collision2D collision2D)
     {
-        Debug.Log("NO??");
-        if(collision.gameObject.tag=="Player")
-        {
-            Destroy(gameObject);
-        }
-        if(collision.gameObject.GetComponent<BaseProjectile>())
+        if (collision2D.gameObject.GetComponent<BaseProjectile>())
         {
             if (Health == 0)
             {
@@ -59,5 +55,14 @@ public class Powerup : MonoBehaviour
 
 
         }
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("NO??");
+        if(collision.gameObject.tag=="Player")
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }
