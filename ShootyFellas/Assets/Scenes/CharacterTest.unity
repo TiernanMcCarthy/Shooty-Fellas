@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handDirection: {fileID: 367057406}
-  defaultGrenade: {fileID: 3638778375125614211, guid: 25e493cbbb2ab1947820adc2e21283f7, type: 3}
+  defaultGrenade: {fileID: 4345183012930132277, guid: 1d0a1312ed431cc4d864c0545f2a917f, type: 3}
 --- !u!1 &806379019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,7 +1498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1357429071
 BoxCollider2D:
   m_ObjectHideFlags: 0
