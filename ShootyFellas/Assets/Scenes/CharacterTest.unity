@@ -681,6 +681,7 @@ MonoBehaviour:
   GunForceMultiplier: 1
   GunForceMultiplierDefault: 1
   AmmoMultiplier: 1
+  currentGun: 0
   IsMoving: 0
 --- !u!212 &795714425
 SpriteRenderer:
