@@ -6,7 +6,7 @@ public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
 
-
+    public DialogueManager manager;
 
     private void Start()
     {
