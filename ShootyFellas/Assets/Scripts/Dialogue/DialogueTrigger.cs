@@ -11,9 +11,17 @@ public class DialogueTrigger : MonoBehaviour
     private void Start()
     {
         TriggerDialogue();
+        StartCoroutine(debugtrigger());
     }
     public void TriggerDialogue()
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+    }
+
+    IEnumerator debugtrigger()
+    {
+        yield return new WaitForSeconds(5);
+        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+        StartCoroutine(debugtrigger());
     }
 }
