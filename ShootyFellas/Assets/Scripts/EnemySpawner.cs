@@ -114,6 +114,7 @@ public class EnemySpawner : MonoBehaviour
         {
             DontDestroyOnLoad(this.gameObject);
             Score = Gamer.Health;
+            MattsKilled = Gamer.NumberOfMattsKilled;
             InPlay = false;
             UnityEngine.SceneManagement.SceneManager.LoadScene(3); //EndScreen;
         }    
