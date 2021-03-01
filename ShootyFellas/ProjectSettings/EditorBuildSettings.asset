@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Please do not break.unity
     guid: 96680ea208ffc2348a9cc670d2f70884
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: bcee9b9dd9d51e94383dfc6eeeb3e153
   m_configObjects: {}
