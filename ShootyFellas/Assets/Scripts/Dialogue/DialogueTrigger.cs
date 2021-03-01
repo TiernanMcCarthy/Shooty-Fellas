@@ -7,9 +7,12 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue;
     bool canSkip = false;
 
+    public GameObject skipPrompt;
+
     private void Start()
     {
         TriggerDialogue();
+        StartCoroutine(firstSkip());
         //StartCoroutine(debugtrigger());
     }
 
@@ -19,6 +22,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             canSkip = false;
             StartCoroutine(debugtrigger());
+            skipPrompt.SetActive(false);
         }
     }
     public void TriggerDialogue()
@@ -28,10 +32,18 @@ public class DialogueTrigger : MonoBehaviour
 
     IEnumerator debugtrigger()
     {
-        yield return new WaitForSeconds(8);
         FindObjectOfType<DialogueManager>().DisplayNextSentence();
+        yield return new WaitForSeconds(5);
         canSkip = true;
         Debug.Log("can skip now");
-        
+        skipPrompt.SetActive(true);
+
+    }
+
+    IEnumerator firstSkip()
+    {
+        yield return new WaitForSeconds(5);
+        skipPrompt.SetActive(true);
+        canSkip = true;
     }
 }

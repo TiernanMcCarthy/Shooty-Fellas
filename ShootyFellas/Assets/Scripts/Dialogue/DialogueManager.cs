@@ -52,6 +52,7 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         Debug.Log("End");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
     // Update is called once per frame
