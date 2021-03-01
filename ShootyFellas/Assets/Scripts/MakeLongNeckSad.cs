@@ -20,7 +20,9 @@ public class MakeLongNeckSad : MonoBehaviour
     public Dialogue thirdDialogue;
     public Dialogue fourthDialogue;
     public Dialogue fifthDialogue;
-    public Dialogue secretDialogue;
+    public Dialogue sixthDialogue;
+    public Dialogue seventhDialogue;
+    public Dialogue eigthDialogue;
 
     public GameObject longNeck;
     public GameObject textBox;
@@ -77,40 +79,57 @@ public class MakeLongNeckSad : MonoBehaviour
                 longNeck.SetActive(true);
                 textBox.SetActive(true);
                 currentlyTalking = true;
-                neckAnimator.SetBool("Hat", true);
                 StartTalking(thirdDialogue);
             }
 
-            if (player.NumberOfMattsKilled >= 35 && player.NumberOfMattsKilled < 50 && lastIntRead != 30)
+            if (player.NumberOfMattsKilled >= 25 && player.NumberOfMattsKilled < 35 && lastIntRead != 25)
             {
-                lastIntRead = 30;
+                lastIntRead = 25;
                 longNeck.SetActive(true);
                 textBox.SetActive(true);
                 currentlyTalking = true;
-                neckAnimator.SetBool("Crying", true);
+                neckAnimator.SetBool("Hat", true);
                 StartTalking(fourthDialogue);
                 
             }
 
-            if (player.NumberOfMattsKilled >= 50 && player.NumberOfMattsKilled < 95 && lastIntRead != 50)
+            if (player.NumberOfMattsKilled >= 35 && player.NumberOfMattsKilled < 60 && lastIntRead != 35)
             {
-                lastIntRead = 50;
+                lastIntRead = 35;
                 longNeck.SetActive(true);
                 textBox.SetActive(true);
                 currentlyTalking = true;
-                neckAnimator.SetBool("Crying", true);
                 StartTalking(fifthDialogue);
 
             }
 
-            if (player.NumberOfMattsKilled >= 95 && lastIntRead != 95)
+            if (player.NumberOfMattsKilled >= 60 && player.NumberOfMattsKilled < 95 && lastIntRead != 60)
+            {
+                lastIntRead = 60;
+                longNeck.SetActive(true);
+                textBox.SetActive(true);
+                currentlyTalking = true;
+                neckAnimator.SetBool("Hat", true);
+                StartTalking(sixthDialogue);
+
+            }
+            if (player.NumberOfMattsKilled >= 95 && player.NumberOfMattsKilled < 160 && lastIntRead != 95)
             {
                 lastIntRead = 95;
                 longNeck.SetActive(true);
                 textBox.SetActive(true);
                 currentlyTalking = true;
                 neckAnimator.SetBool("Crying", true);
-                StartTalking(secretDialogue);
+                StartTalking(seventhDialogue);
+
+            }
+            if (player.NumberOfMattsKilled >= 160 && lastIntRead != 160)
+            {
+                lastIntRead = 160;
+                longNeck.SetActive(true);
+                textBox.SetActive(true);
+                currentlyTalking = true;
+                StartTalking(eigthDialogue);
 
             }
         }
