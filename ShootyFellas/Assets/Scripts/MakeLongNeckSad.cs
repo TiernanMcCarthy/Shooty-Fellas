@@ -12,6 +12,7 @@ public class MakeLongNeckSad : MonoBehaviour
 
     public DialogueManager manager;
 
+    public Dialogue gunExplain;
 
     public Dialogue firstDialogue;
     public Dialogue secondDialogue;
@@ -27,7 +28,10 @@ public class MakeLongNeckSad : MonoBehaviour
     
     void Start()
     {
-        
+        longNeck.SetActive(true);
+        textBox.SetActive(true);
+        currentlyTalking = true;
+        StartTalking(gunExplain);
     }
 
     // Update is called once per frame
