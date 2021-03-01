@@ -110,7 +110,7 @@ public class EnemySpawner : MonoBehaviour
     {
         float timey = Mathf.RoundToInt((Time.time - startTime) - TimeToPlay) * -1;
         Timer.text = "Time Remaining: " + timey ;
-        if(timey<=0)
+        if(timey<=0 && InPlay)
         {
             DontDestroyOnLoad(this.gameObject);
             Score = Gamer.Health;
