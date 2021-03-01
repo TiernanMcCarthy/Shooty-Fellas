@@ -55,6 +55,10 @@ public class DialogueManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
+    public void ClearText()
+    {
+        dialogueText.text = "";
+    }
     // Update is called once per frame
     void Update()
     {

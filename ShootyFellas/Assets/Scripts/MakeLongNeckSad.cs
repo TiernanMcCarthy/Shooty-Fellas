@@ -13,6 +13,7 @@ public class MakeLongNeckSad : MonoBehaviour
     public DialogueManager manager;
 
     public Dialogue gunExplain;
+    public Dialogue gunExplain2;
 
     public Dialogue firstDialogue;
     public Dialogue secondDialogue;
@@ -25,6 +26,8 @@ public class MakeLongNeckSad : MonoBehaviour
     public GameObject textBox;
 
     public Animator neckAnimator;
+
+    bool hasDoneIntro = false;
     
     void Start()
     {
@@ -32,6 +35,7 @@ public class MakeLongNeckSad : MonoBehaviour
         textBox.SetActive(true);
         currentlyTalking = true;
         StartTalking(gunExplain);
+        StartCoroutine(FirstDialogueWait());
     }
 
     // Update is called once per frame
@@ -40,6 +44,14 @@ public class MakeLongNeckSad : MonoBehaviour
         if(!currentlyTalking)
         {
             //Debug.Log("gamer");
+            if(player.NumberOfMattsKilled == 0 && !hasDoneIntro)
+            {
+                longNeck.SetActive(true);
+                textBox.SetActive(true);
+                currentlyTalking = true;
+                StartTalking(gunExplain2);
+                hasDoneIntro = true;
+            }
             if (player.NumberOfMattsKilled == 1 && lastIntRead != 1)
             {
                 Debug.Log("gamer2");
@@ -116,5 +128,15 @@ public class MakeLongNeckSad : MonoBehaviour
         longNeck.SetActive(false);
         textBox.SetActive(false);
         currentlyTalking = false;
+    }
+
+    IEnumerator FirstDialogueWait()
+    {
+        yield return new WaitForSeconds(5);
+        longNeck.SetActive(false);
+        textBox.SetActive(false);
+        currentlyTalking = false;
+        //manager.ClearText();
+        //StartTalking(gunExplain2);
     }
 }
