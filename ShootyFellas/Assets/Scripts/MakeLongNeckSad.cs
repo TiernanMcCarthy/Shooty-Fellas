@@ -30,7 +30,8 @@ public class MakeLongNeckSad : MonoBehaviour
     public Animator neckAnimator;
 
     bool hasDoneIntro = false;
-    
+
+    bool dumbFucking24 = false;
     void Start()
     {
         longNeck.SetActive(true);
@@ -82,9 +83,9 @@ public class MakeLongNeckSad : MonoBehaviour
                 StartTalking(thirdDialogue);
             }
 
-            if (player.NumberOfMattsKilled >= 25 && player.NumberOfMattsKilled < 35 && lastIntRead != 25)
+            if (player.NumberOfMattsKilled >= 25 && player.NumberOfMattsKilled < 35 && !dumbFucking24)
             {
-                lastIntRead = 25;
+                dumbFucking24 = true;
                 longNeck.SetActive(true);
                 textBox.SetActive(true);
                 currentlyTalking = true;
