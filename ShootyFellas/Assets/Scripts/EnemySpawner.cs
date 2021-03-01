@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     public Enemy Prefab;
     public Powerup Powerupprefab;
 
-    private float LastSpawnTime = 0;
+    public float LastSpawnTime = 0;
 
     public float LastPowerUpSpawn = 0;
     // Start is called before the first frame update
@@ -61,6 +61,8 @@ public class EnemySpawner : MonoBehaviour
     public int MattsKilled = 0;
 
     bool InPlay = true;
+
+    public float WaitTime = 20;
     void GenerateList()
     {
         /*Chances = new List<char>();
@@ -126,7 +128,7 @@ public class EnemySpawner : MonoBehaviour
         startTime = Time.time;
         GenerateList();
         Gamer = FindObjectOfType<Character>();
-  
+        InPlay = false;
 
 
 
@@ -135,6 +137,10 @@ public class EnemySpawner : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if(Time.time-startTime>=WaitTime)
+        {
+            InPlay = true;
+        }
         if (InPlay)
         {
             NumberOfMatts = FindObjectsOfType<Enemy>().Length;
