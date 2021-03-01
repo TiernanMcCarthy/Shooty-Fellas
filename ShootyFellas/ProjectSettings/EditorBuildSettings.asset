@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ddbd71cbb1676eb4982ad94868041f51
   - enabled: 1
-    path: Assets/Scenes/samcoolscene.unity
-    guid: 9ab46979285113d4db94e86b55ca2e30
+    path: Assets/Scenes/TutorialScene.unity
+    guid: b08a67d88b2c6fa4192eca54e5d17934
   - enabled: 1
     path: Assets/Scenes/Please do not break.unity
     guid: 96680ea208ffc2348a9cc670d2f70884
