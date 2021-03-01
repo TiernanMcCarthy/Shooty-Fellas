@@ -5,12 +5,21 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
-
+    bool canSkip = false;
 
     private void Start()
     {
         TriggerDialogue();
-        StartCoroutine(debugtrigger());
+        //StartCoroutine(debugtrigger());
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Return) && canSkip)
+        {
+            canSkip = false;
+            StartCoroutine(debugtrigger());
+        }
     }
     public void TriggerDialogue()
     {
@@ -19,8 +28,10 @@ public class DialogueTrigger : MonoBehaviour
 
     IEnumerator debugtrigger()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(8);
         FindObjectOfType<DialogueManager>().DisplayNextSentence();
-        StartCoroutine(debugtrigger());
+        canSkip = true;
+        Debug.Log("can skip now");
+        
     }
 }
