@@ -9,6 +9,15 @@ public class EndScreen : MonoBehaviour
     public TextMeshProUGUI Profit;
 
     public EnemySpawner ME;
+
+    public UnityEngine.UI.Image Neck;
+
+    public Sprite Happy;
+
+    public Sprite Middling;
+
+    public Sprite Sad;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +31,26 @@ public class EndScreen : MonoBehaviour
         {
             Profit.text = "Net Profit: " + ME.Score;
             Profit.color = Color.green;
+            Neck.sprite = Happy;
         }
         else if(ME.Score<0)
         {
             Profit.text = "Net Loss: " + ME.Score;
             Profit.color = Color.red;
+
+            if(ME.Score<-1000)
+            {
+                Neck.sprite = Sad;
+            }
+            else
+            {
+                Neck.sprite = Middling;
+            }
         }
 
         MattsMurdered.text = "Innocent Bystanders Harmed: " + ME.MattsKilled;
+
+        
     }
 
     public void Leave()
